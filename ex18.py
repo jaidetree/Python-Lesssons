@@ -11,8 +11,8 @@ def print_two_again(arg1, arg2):
 def print_one(arg1):
     print "arg1: %r" % arg1
 
-# this one takes no arguments
-def print_none():
+# this one takes no arguments    
+def print_none():             
     print "I got nothin'."
 
 print_two("Zed", "Shaw")
