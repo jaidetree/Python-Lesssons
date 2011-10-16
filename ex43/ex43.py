@@ -1,8 +1,8 @@
 from sys import exit
 import re
 from functions import *
-from spaceship import *
 from inventory import *
+from spaceship import *
 
 class GameEngine(object):
 
@@ -31,16 +31,26 @@ class GameEngine(object):
         self.gets = room.gets
         self.places = room.places
         self.uses = room.uses
+        
+        room.inventory = self.inventory
 
         while True:
-            next_room = promptinput(room.prompt(), self.process_response)
-
-            if next_room != False:
+            next_room = self.process_response(promptinput(room.prompt(), self.validate_response))
+            if isinstance(next_room, str) and self.rooms.has_key(next_room):
                 self.room = room = self.rooms[next_room] 
+
+    def validate_response(self, data):
+        if isinstance(data, str) and not data.isdigit():
+            return True
+        else:
+            return False
 
     def process_response(self, command_string):
         subjects = re.match('^([a-z]+) ([a-z\s]+\s)?([-a-z0-9]+)$', command_string, re.IGNORECASE)
-        return_data = self._run_command(subjects.group(1), subjects.group(3))
+        return_data = False
+
+        if subjects != None:
+            return_data = self._run_command(subjects.group(1), subjects.group(3))
 
         if not return_data:
             self.print_error()
@@ -63,8 +73,12 @@ class GameEngine(object):
         for item in group:
             if item['label'].lower() == subject.lower():
                 action = getattr(self.room, item['name'])
-                action()
-                return True
+                return_data = action()
+
+                if return_data == None:
+                    return_data = True
+
+                return return_data
 
         return False
 
