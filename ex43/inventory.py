@@ -24,3 +24,12 @@ class Inventory(object):
             if value == label:
                 return name
         return ''
+
+    def list_inventory(self):
+        for index in range(0, len(self.inventory.items())):
+            print "\nItems:"
+            print "------------"
+            print "{}.) {}".format(index + 1, self.inventory.items()[index][1])
+            print "\n"
+
+
