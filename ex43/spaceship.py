@@ -28,8 +28,7 @@ class SpaceShip(object):
     def get_weapons(self):
         self.weapon_name = promptinput("You run right into your house and rip apart your microwave, attach a spatula, a nail gun, and some various kitchenwhere to form what appears to be a very deadly weapon. You give it the name:", self.validate_weapon_name)
 
-        print "You named your weapon {}, it's weird that you did that but ok. You make your way back to the spaceship in your backyard.".format(self.weapon_name)
-        return True
+        print "You named your weapon {}, it's weird that you called it that, but ok. You make your way back to the spaceship in your backyard.".format(self.weapon_name)
 
     def validate_weapon_name(self,data):
         if isinstance(data, str) and not data.isdigit():

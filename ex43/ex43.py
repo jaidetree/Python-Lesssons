@@ -63,7 +63,8 @@ class GameEngine(object):
         for item in group:
             if item['label'].lower() == subject.lower():
                 action = getattr(self.room, item['name'])
-                return action()
+                action()
+                return True
 
         return False
 
