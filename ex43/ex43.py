@@ -71,8 +71,8 @@ class GameEngine(object):
             group = self.gets
 
         for item in group:
-            if item['label'].lower() == subject.lower():
-                action = getattr(self.room, item['name'])
+            if item.get('label').lower() == subject.lower():
+                action = getattr(self.room, item.get('name'))
                 return_data = action()
 
                 if return_data == None:
