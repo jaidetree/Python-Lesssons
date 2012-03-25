@@ -11,6 +11,9 @@ def scan(phrase):
         ('verb', 'go'),
         ('noun', 'bear'),
         ('noun', 'princess'),
+        ('stop', 'the'),
+        ('stop', 'in'),
+        ('stop', 'of'),
     )
 
     for word in words:
@@ -22,7 +25,7 @@ def scan(phrase):
         elif is_number(word):
             results.append(('number', word))
         else:
-            results.append(('ERROR', word))
+            results.append(('error', word))
 
     return results
 
