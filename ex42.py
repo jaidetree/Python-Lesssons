@@ -1,6 +1,5 @@
 from sys import exit
 from random import randint
-from random import randint
 # from inventory import Inventory
 
 class Game(object):
